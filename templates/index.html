@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Sentinel | Advanced Link Checker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-link"></i>
+                <h1>Link Sentinel</h1>
+            </div>
+            <p>Scan your website for broken links, 404 errors, and dead ends.</p>
+        </header>
+
+        <main>
+            <div class="search-container glass-panel">
+                <form id="crawl-form">
+                    <div class="input-group">
+                        <i class="fa-solid fa-globe"></i>
+                        <input type="text" id="url-input" placeholder="Enter website URL (e.g., example.com)" required>
+                        <button type="submit" id="scan-btn">
+                            <span>Scan Now</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="status-panel" class="status-panel glass-panel hidden">
+                <div class="status-header">
+                    <h2><i class="fa-solid fa-radar"></i> Live Scan Status</h2>
+                    <div class="scanning-indicator">
+                        <div class="pulse"></div>
+                        <span id="status-text">Initializing...</span>
+                    </div>
+                </div>
+                <div class="current-url" id="current-url">Waiting to start...</div>
+                
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <span class="stat-value" id="stat-scanned">0</span>
+                        <span class="stat-label">Pages Scanned</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-value success" id="stat-good">0</span>
+                        <span class="stat-label">Good Links</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-value danger" id="stat-broken">0</span>
+                        <span class="stat-label">Broken Links</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="results-panel" class="results-panel hidden">
+                <div class="results-header">
+                    <h2><i class="fa-solid fa-triangle-exclamation"></i> Broken Links Found</h2>
+                    <button id="export-btn" class="btn-secondary"><i class="fa-solid fa-download"></i> Export</button>
+                </div>
+                <div class="table-container glass-panel">
+                    <table id="results-table">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Clicked Element</th>
+                                <th>Broken Link URL</th>
+                                <th>Found On Page</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-body">
+                            <!-- Results will be populated here -->
+                        </tbody>
+                    </table>
+                    <div id="no-results-msg" class="empty-state hidden">
+                        <i class="fa-regular fa-face-smile-beam"></i>
+                        <h3>Perfect! No broken links found.</h3>
+                        <p>Your website is healthy and all links are working properly.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js', v=1) }}"></script>
+</body>
+</html>
